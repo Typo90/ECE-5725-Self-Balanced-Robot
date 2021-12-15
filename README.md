@@ -1,8 +1,6 @@
 # ECE5725-Self-Balanced-Robot
 These are the codes of self-balanced Robot for the ECE 5725 Design with Embedded Operating Systems in Cornell University.
 
-Components Need:
-
 ## First You Need to Know
 
 **Components Need:** 
