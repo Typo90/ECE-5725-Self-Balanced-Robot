@@ -7,23 +7,25 @@ Components Need:
 
 **Components Need:** 
 
-**Raspberry Pi *1**  
+Raspberry Pi *1
 
-**MPU6050 *1**
+MPU6050 *1
 
-**12V motors with encoder *2**
+12V motors with encoder *2
 
-**TB6612 *1** (Suggestion: Prepare more than 1, it is easily to burn )*
+TB6612 *1 (Suggestion: Prepare more than 1, it is easily to burn )*
 
-**Pi Camera  * 1**
+Pi Camera  * 1
 
-**Gimbal (2 Servos that help Camera to move ) *1**
+Gimbal (2 Servos that help Camera to move ) *1
 
-**Bread board and some pin-hole wires**
+Bread board and some pin-hole wires
+
+
 
 The balanced robot is a really complicated system and you need much time and patience! Good Luck
 
-By the way, feel **Free** to contact me! My email is yp284@cornell.edu. ( I only can see the email that ends in edu )
+By the way, feel **Free** to contact us! Our email are yp284@cornell.edu and yl2237@cornell.edu. ( We only can see the email that ends in edu )
 
 ## How to start with CODE?
 
@@ -33,7 +35,7 @@ You need to connect the Raspberry Pi to all the components like the picture show
 
 # Raspberry Pi code
 
-This is our Self-Balanced Robot core control program.  We write two version of control program in **C** and Python.
+This is our Self-Balanced Robot core control program.  We write two version of control program in **C** and **Python**.
 
 The C code works successfully to balanced robot so I will follow the C code to tell you how to start.
 
