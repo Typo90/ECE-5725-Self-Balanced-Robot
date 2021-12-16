@@ -101,7 +101,7 @@ And we can use the command to make sure the encoder module is successfully loade
 sudo ismod
 ```
 
-![image-20211215182541134](D:\Users\Yucheng Peng\Desktop\ECE5725-Self-Balanced-Robot\Pictures\lsmod encoder.png)
+![image-20211215182541134](\Pictures\lsmod encoder.png)
 
 ## Step3: Compile C Program
 
@@ -115,3 +115,4 @@ sudo make
 sudo ./main
 ```
 
+# Code details 
