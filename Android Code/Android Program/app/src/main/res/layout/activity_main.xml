@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="801dp"
+        android:layout_height="428dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-35dp"
+        tools:layout_editor_absoluteY="-78dp">
+
+
+    </WebView>
+
+    <com.gcssloop.widget.RockerView
+        android:id="@+id/rocker"
+        android:layout_width="190dp"
+        android:layout_height="204dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_right"
+        android:layout_width="76dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginRight="128dp"
+        android:text="R"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_left"
+        android:layout_width="76dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="L"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_up"
+        android:layout_width="76dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:text="U"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_down"
+        android:layout_width="76dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:text="D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_marginStart="316dp"
+        android:layout_marginLeft="1000dp"
+        android:layout_marginTop="352dp"
+        android:layout_marginBottom="1dp"
+        android:layout_x="350dp"
+        android:layout_y="325dp"
+        android:text="Stop" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
