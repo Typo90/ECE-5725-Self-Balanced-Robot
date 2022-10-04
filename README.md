@@ -48,7 +48,7 @@ We will display the code step by step to show how it works.
 
 You need to connect the Raspberry Pi to all the components like the picture shown below.
 
-![graph](pics\graph.png)
+![graph](pics/graph.png)
 
 ### Raspberry Pi code
 
