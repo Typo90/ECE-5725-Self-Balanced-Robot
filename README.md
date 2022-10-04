@@ -120,7 +120,7 @@ And we can use the command to make sure the encoder module is successfully loade
 sudo ismod
 ```
 
-![lsmod encoder](pics\lsmod encoder.png)
+![lsmod encoder](pics/lsmod encoder.png)
 
 ##### Step3: Compile C Program
 
@@ -167,7 +167,7 @@ The WALL-E's eye is composed by Gimbal, Pi camera and android phone.
 
 #### Pi camera
 
-<img src="pics\Pi Camrea.jpg" alt="Pi Camrea" style="zoom:50%;" />
+<img src="pics/Pi Camrea.jpg" alt="Pi Camrea" style="zoom:50%;" />
 
 The Camera Module 2 can be used to take high-definition video, as well as stills photographs.
 
@@ -242,7 +242,7 @@ new Thread(new ClientThread("Move1")).start();
 
 WALL-E's body is composed by MPU6050, TB6612, 12V Motors with encoders, and breadboard. Here is the code structure of WALL-E's body
 
-![structure](pics\structure.png)
+![structure](pics/structure.png)
 
 #### TB6612
 
@@ -261,7 +261,7 @@ Different input to TB6612 can control different direction of motors.
 
 In this section, the key sensor MPU6050 will be illustrated Fig. 1. To keep our two-wheel balanced car ‘WALL-E’ upright and moving forward and backward smoothly, the first thing that needs to obtain is the attitude angle of the car and the change of angle will decide the motor speed. Sensor MPU6050 is a three-direction sensor used to read all acceleration of x, y, and z directions to compute the corresponding moving angle of x, y, and z directions. This computing method will be explained later. Through the angle, the attitude of the car relative to the ground will be obtained to make corresponding control adjustments. For example, when the robot is moving forward, the angle will be computed, and the forward speed will be increased to balance the car. 
 
-<img src="pics\MPU6050.png" alt="MPU6050" style="zoom:50%;" />
+<img src="pics/MPU6050.png" alt="MPU6050" style="zoom:50%;" />
 
 The angle computing method in this section is the Quaternion method [1]. DMP library is provided in MPU6050. The quaternion method is used in the underlying algorithm and the driver is configured and transplanted to use quaternion to moving angles. Besides, commonly used attitude computation methods also include the Kalman filter and complementary filter methods [2]. In the configure and transplant work of MPU6050, the following work is illustrated in Fig. 2 in inv_mpu.c file
 
@@ -278,11 +278,11 @@ The angle computing method in this section is the Quaternion method [1]. DMP lib
 
 These functions of i2c_write, i2c_read, delay_ms, get_ms, reg_int_cb, labs, fabsf, and min functions need to be defined and implemented, and other functions in the DMP library are these interfaces called. Functions of get_ms and reg_int_cb are the timestamp and callback functions, respectively. ‘labs’ is a function of the Linux standard library (stdlib. h); ‘fabsf’ and ‘fabs’ are available in the math library (math. h). The parameter of ‘fabsf’ is float and the parameter of ‘fabs’ is a double float, thus in this program, ‘fabsf’ is used with the float parameters.
 
-![image-20211218220614253](pics\Basic functions of MPU6050 control.png)
+![image-20211218220614253](pics/Basic functions of MPU6050 control.png)
 
 Then functions of i2cwrite, i2cRead, and delay_ms are implemented by the following codes. 
 
-![image-20211218220627697](pics\Functions of i2cwrite, i2cRead and delay_ms.png)
+![image-20211218220627697](pics/Functions of i2cwrite, i2cRead and delay_ms.png)
 
 The parameter list of the read-write function and function prototype is determined. Therefore, the function prototype could not be defined casually to avoid error prompting during compilation. The parameter list consists of the slave address, register, data length, and data content. The address uses 7-bit address mode. I2c and SMBus are used in this code. I2C is a two-wire communication protocol developed by Philips, which is often used in small devices that don’t require high speed. SMBus is a system management bus based on the I2C protocol. I2c and SMBus are compatible in the system generally. Firstly, the ioctl function is used to set the slave address, and then call the i2c read and write functions to read and write data. The delay millisecond function is implemented using the usleep function which is a subtle function and multiplied by 1000 to achieve millisecond delay.
 
@@ -327,35 +327,35 @@ void Read_DMP(void)
 
 How to get the correct speed of our cute ‘WALL-E’ robot? The position angle of the balance car only relying on the feedback of the MPU6050 sensor could not maintain a static balance. It must be combined with the speed feedback of the motor to achieve a stable self-balance. Generally, there are two methods to measure motor speed, one is the Hall encoder, and the other is the photoelectric encoder. The accuracy of the photoelectric encoder is higher than the Hall encoder with a higher price. Therefore, in our project, we use the Hall encoder for our WALL-E robot (Fig. 8).
 
-![image-20211218231451014](pics\encoder.png)
+![image-20211218231451014](pics/encoder.png)
 
 There are two motors to control the speed and each motor has a hall encoder then are connected to RPI gpio12, gpio16, gpio20, and gpio21. 
 
-![image-20211218231558423](pics\Connection of encoder and RPI GPIOs.png)
+![image-20211218231558423](pics/Connection of encoder and RPI GPIOs.png)
 
 The encoder has two phases: A phase and B phase. They are exactly 90 degrees out of phase in the output of the waveform and this phase difference is used to judge the motor's forward and reverse rotation. As shown in picture below.
 
-![image-20211218231606766](pics\Two-phase waveform diagrams of the motor forward and reverse rotation.png)
+![image-20211218231606766](pics/Two-phase waveform diagrams of the motor forward and reverse rotation.png)
 
 There are two-phase waveform diagrams of the motor forward and reverse rotation. In the case of motor forward rotation, when phase A runs ahead of phase B, B signal is always low at the rising edge of A, A is always high at the rising edge of B, B is high at the falling edge of A, and A is low at the falling edge of B. In the case of motor reverse rotation, A signal is always low at the rising edge of B, B is always high at the rising edge of A, A is high at the falling edge of B, and B is low at the falling edge of A.
 
 Besides, four-time frequency speed measurement is implemented by cooperation and computation of A, B phase signals. That is, several times are counted at each rising and falling edge so that there can be 4 counts in one cycle to improve the accuracy and rate of speed measurement. To improve the timeliness of response, GPIO interrupts are used to capture the signals of the encoders. The interrupt of the Linux system is managed by the kernel and could not be used at the application layer. Therefore, it is necessary to implement the program in the kernel. This is equivalent to the driver of the encoder, and it is quite suitable with the kernel module. As shown this picture,
 
-![image-20211218231945640](pics\Requirement and configuration mode of GPIO.png)
+![image-20211218231945640](pics/Requirement and configuration mode of GPIO.png)
 
 In the init function, mode requirement and configuration are set to use GPIO. Function GPIO_requirement () with three parameters of GPIO number, mode, and the name. Function enable_RQ is used to enable the interrupt and its parameter is the interrupt number. The interrupt number corresponding to GPIO is obtained by function GPIO_interrput (). As shown in pciture
 
-![image-20211218232232950](pics\Configuration of interrupts.png)
+![image-20211218232232950](pics/Configuration of interrupts.png)
 
  the function REQ_interrupt is used to configure the interrupt callback function, trigger mode, name, and input parameters. The interrupt function of Linux is divided into two parts: the top half and the bottom half. The top half is the real callback function. The execution is in the interrupt context and generally could not be interrupted to execute the part that must be done. The bottom half is triggered by the top half, and other less urgent matters that interrupt callbacks are executed. The programs in the bottom half will participate in the kernel scheduling and could be interrupted.
 
 In our RPI, 4-time frequency speed measurement is used and if the rotation is forward, the count of the encoder will be increased by 1, and if the rotation is reversed, the count of the encoder will be decreased by 1, as shown in pciture
 
-![image-20211218232634709](pics\Count of the encoder.png)
+![image-20211218232634709](pics/Count of the encoder.png)
 
 Because the count of the encoder is proportional to the motor speed, it is no need to compute the specific speed of the motor. Therefore, the count values are directly used as the speed feedback of the PID controller as the following code.
 
-![image-20211218232544884](pics\Speed loop of PID controller.png)
+![image-20211218232544884](pics/Speed loop of PID controller.png)
 
 ## TESTS AND RESULTS 
 
@@ -363,7 +363,7 @@ Because the count of the encoder is proportional to the motor speed, it is no ne
 
 The GUI of the Android app is shown in Figure. The buttons in the lower right corner are used to control the rotation direction of the camera. There is a TCP server in RPI and when the direction button is pressed, a thread will be started in APP via socket API to send commands to RPI. For example, when the ‘L’ left button is touched, our control app will start a thread and send the ‘turn left’ command to RPI via socket API. Then the ginbal will control the camera to turn left and WALL’E could see the left things he wants to know!
 
-![WALL-E app control](pics\WALL-E app control.png)
+![WALL-E app control](pics/WALL-E app control.png)
 
 ### WALL-E’s balance
 
@@ -371,11 +371,11 @@ The GUI of the Android app is shown in Figure. The buttons in the lower right co
 
 As shown in the left column of the figure below, m1 and m2 are the speed of the left and right motors respectively and gyro is an acceleration coefficient. When the angle increases from 1.96 degrees to 2.52 degrees, the gyro will increase from 30 to 52 and the motor speed will increase from 422 to 472 to avoid robot ‘WALL-E’ falling. As shown in the right column of the figure below, the measured angle of the robot is 6 degrees, so it has an initial motor speed of 247 to avoid falling. With the decreasing of the angle from 6.13 degrees to 5.95 degrees, the speed of motors is decreased from 248 to 229.
 
-![Balance control results](pics\Balance control results.png)
+![Balance control results](pics/Balance control results.png)
 
 To avoid the speed increasing extremely fast and burning out the servo, a safe system is set in the motor control file. As shown in the figure below, when the robot ‘WALL-E’ is falling so fast and the angle increased dramatically, the motor speed will be increased extremely fast to reach the max value of speed and angle. Then the motor will stop immediately and let the robot ‘WALL-E’ rest for a while. For example, when the angle is 40 degrees and the speed is 2000, this robot will shut down safely and get a rest and stop working.
 
-![Safety shutdown of the robot](pics\Safety shutdown of the robot.png)
+![Safety shutdown of the robot](pics/Safety shutdown of the robot.png)
 
 ### Performance of Program  
 
@@ -485,3 +485,4 @@ https://github.com/Typo90/ECE5725-Self-Balanced-Robot
         Thank Jiao Yang's motors and TB6612.<br />
         Thank Kuan Lu's access of maker lab and encouragement for us.<br />
 		Thank Hanzhong Liang's help to PID paremters adjustment.<br/>
+
